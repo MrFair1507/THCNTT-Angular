@@ -1,0 +1,37 @@
+  <!-- <div class="quiz-container">
+      <h2>Simple Quiz</h2>
+    
+      <div class="question-container">
+        <p class="currentQuestion" class="question">{{ currentQuestion.question }}</p>
+        <input type="text" placeholder="Enter your answer" class="input-answer" [(ngModel)]="userInput">
+        <button (click)="checkAnswer()" class="btn-check">Check Answer</button>
+
+      </div>
+    
+      <p class="score">Total correct answers: {{ score }}</p>
+      <p class="progress">Current Question: {{ currentIndex + 1 }}/{{ questions.length }}</p>
+    </div> -->
+    
+
+  <div class="quiz-container">
+    <h2>Simple Quiz</h2>
+  <!-- Kiểm tra nếu quiz chưa hoàn thành, hiển thị câu hỏi -->
+    <div *ngIf="!quizCompleted; else quizEnd">
+      <div class="question-container">
+        <!-- Hiển thị câu hỏi hiện tại -->
+        <p class="question">{{ currentQuestion?.question }}</p>
+        <!-- Ô nhập cho câu trả lời -->
+        <input type="text" placeholder="Enter your answer" [(ngModel)]="userInput" class="input-answer">
+        <!-- Nút kiểm tra câu trả lời -->
+        <button (click)="checkAnswer()" class="btn-check">Check Answer</button>
+      </div>
+      <!-- Hiển thị tổng số câu trả lời đúng -->
+      <p class="score">Total correct answers: {{ score }}</p>
+      <!-- Hiển thị tiến độ quiz (câu hỏi hiện tại trên tổng số câu hỏi) -->
+      <p class="progress">Current Question: {{ currentIndex + 1 }}/{{ questions.length }}</p>
+    </div>
+  <!-- Thông báo khi quiz đã hoàn thành -->
+    <ng-template #quizEnd>
+      <p class="final-message">Quiz Completed! Your total score is {{ score }}.</p>
+    </ng-template>
+  </div>
